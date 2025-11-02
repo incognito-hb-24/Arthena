@@ -65,10 +65,10 @@ You can set the API key in any of these ways:
 
 🔹 Option A — Environment Variable
 
-# Windows
+ Windows
 set ARTHENA=YOUR_API_KEY
 
-# macOS / Linux
+ macOS / Linux
 export ARTHENA=YOUR_API_KEY
 
 🔹 Option B — .streamlit/secrets.toml
