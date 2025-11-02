@@ -104,19 +104,19 @@ Click Restart — your Arthena app is now live!
 ## Google Colab Testing (optional)
 Run Arthena inside Colab if you don’t have a local setup:
 
-!pip -q install streamlit==1.39.0 google-generativeai==0.8.3 pandas==2.2.3 numpy==2.1.3 matplotlib==3.9.2
-!git clone https://github.com/<your-username>/Arthena.git
-%cd Arthena
-import os; os.environ["ARTHENA"] = "YOUR_API_KEY"
+!pip -q install streamlit==1.39.0 google-generativeai==0.8.3 pandas==2.2.3 numpy==2.1.3 matplotlib==3.9.2 <br>
+!git clone https://github.com/<your-username>/Arthena.git  <br>
+%cd Arthena   <br>
+import os; os.environ["ARTHENA"] = "YOUR_API_KEY"     <br>
 
 
 # Start the app
-import threading, subprocess, time
-def run():
-    subprocess.run(["streamlit", "run", "app.py", "--server.port", "8501", "--server.address", "0.0.0.0"])
-threading.Thread(target=run, daemon=True).start()
-time.sleep(5)
-print("Arthena is running — open the public URL from the output above.")
+import threading, subprocess, time    <br>
+def run():    <br>
+    subprocess.run(["streamlit", "run", "app.py", "--server.port", "8501", "--server.address", "0.0.0.0"])    <br>
+threading.Thread(target=run, daemon=True).start()    <br>
+time.sleep(5)    <br>
+print("Arthena is running — open the public URL from the output above.")    <br>
 
 
 ## Core Concepts
@@ -131,10 +131,10 @@ print("Arthena is running — open the public URL from the output above.")
 
 Arthena’s chatbot uses your entered data to provide relevant financial insights.
 
-Example prompts:
-“How can I reduce expenses next month?”
-“What’s my savings ratio?”
-“Is my investment allocation healthy?”
+Example prompts:  <br>
+“How can I reduce expenses next month?”   <br>
+“What’s my savings ratio?”   <br>
+“Is my investment allocation healthy?”   <br>
 
 To enable AI features, make sure your Gemini API key is active and valid.
 
