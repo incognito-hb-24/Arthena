@@ -46,12 +46,12 @@ pip install -r requirements.txt
 ##  Local Run Guide
 1️⃣ Create and Activate Virtual Environment
 
-Windows (PowerShell / CMD):
+**Windows (PowerShell / CMD):**
 
 python -m venv .venv
 .venv\Scripts\activate
 
-macOS / Linux:
+**macOS / Linux:**
 
 python3 -m venv .venv
 source .venv/bin/activate
