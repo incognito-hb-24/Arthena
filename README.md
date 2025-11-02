@@ -16,22 +16,22 @@ Built with **Streamlit**, **pandas**, and **Gemini AI**, Arthena turns simple us
 
 ---
 
-## Project Structure
-Arthena/
-│ app.py
-│ requirements.txt
-│ README.md
-│
-├─cfo/
-│ ├─ init.py
-│ ├─ logic.py # core calculations & plots
-│ └─ storage.py # CSV load/save utilities
-│
-├─data/
-│ └─ sample_transactions.csv
-│
-└─.streamlit/
-└─ config.toml # (optional) Streamlit config
+## Project Structure  <br>
+Arthena/         <br>
+│ app.py   <br>
+│ requirements.txt     <br>
+│ README.md   <br>
+│        <br>
+├─cfo/      <br>
+│ ├─ init.py     <br>
+│ ├─ logic.py # core calculations & plots     <br>
+│ └─ storage.py # CSV load/save utilities   <br>
+│      <br>
+├─data/            <br>
+│ └─ sample_transactions.csv         <br>
+│        <br>
+└─.streamlit/        <br>
+└─ config.toml # (optional) Streamlit config        <br>
 
 
 ## Requirements
