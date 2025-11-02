@@ -38,7 +38,7 @@ Arthena/
 - Python **3.10+**
 - Recommended: a virtual environment
 
-Install everything using:
+**Install everything using:**
 pip install -r requirements.txt
 
 
@@ -66,14 +66,8 @@ Arthena uses Google’s Gemini API for its chatbot.
 You can set the API key in any of these ways:
 
 🔹 Option A — Environment Variable
-
- Windows
- 
-set ARTHENA=YOUR_API_KEY
-
- macOS / Linux
- 
-export ARTHENA=YOUR_API_KEY
+set ARTHENA=YOUR_API_KEY ** Windows**
+export ARTHENA=YOUR_API_KEY  **macOS / Linux**
 
 🔹 Option B — .streamlit/secrets.toml
 Create a new file named .streamlit/secrets.toml and add:
@@ -94,7 +88,7 @@ streamlit run app.py
 
 Push your repo to GitHub
 
-Visit https://share.streamlit.io
+**Visit** https://share.streamlit.io
  → Deploy an app
 
 Select your repo and set the file path to app.py
@@ -138,7 +132,6 @@ print("Arthena is running — open the public URL from the output above.")
 Arthena’s chatbot uses your entered data to provide relevant financial insights.
 
 Example prompts:
-
 “How can I reduce expenses next month?”
 “What’s my savings ratio?”
 “Is my investment allocation healthy?”
