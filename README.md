@@ -84,8 +84,6 @@ https://makersuite.google.com/app/apikey
 streamlit run app.py
 
 
-
-
 ## **☁️ Streamlit Cloud Deployment (Free Hosting)**
 
 Push your repo to GitHub
@@ -103,16 +101,14 @@ ARTHENA = "YOUR_GEMINI_API_KEY"
 Click Restart — your Arthena app is now live!
 
 
-
-
 ## **Google Colab Testing (optional)**
-
 Run Arthena inside Colab if you don’t have a local setup:
 
 !pip -q install streamlit==1.39.0 google-generativeai==0.8.3 pandas==2.2.3 numpy==2.1.3 matplotlib==3.9.2
 !git clone https://github.com/<your-username>/Arthena.git
 %cd Arthena
 import os; os.environ["ARTHENA"] = "YOUR_API_KEY"
+
 
 # **Start the app**
 import threading, subprocess, time
@@ -123,15 +119,12 @@ time.sleep(5)
 print("Arthena is running — open the public URL from the output above.")
 
 
-
-
 ## **Core Concepts**
 | Module           | Description                                        | Example                           |
 | ---------------- | -------------------------------------------------- | --------------------------------- |
 | **Wealth**       | Long-term assets, liabilities, goals, or insurance | FD, Loan, Health Plan             |
 | **Cashflow**     | Day-to-day income or expense                       | Salary, Rent, Groceries           |
 | **AI Assistant** | Uses your transaction data to generate tips        | "How can I save more this month?" |
-
 
 
 ## ** AI Assistant (Gemini)**
@@ -145,8 +138,6 @@ Example prompts:
 “Is my investment allocation healthy?”
 
 To enable AI features, make sure your Gemini API key is active and valid.
-
-
 
 
 ## ** Troubleshooting**
