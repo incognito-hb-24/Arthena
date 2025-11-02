@@ -39,7 +39,6 @@ Arthena/
 - Recommended: a virtual environment
 
 Install everything using:
-```bash
 pip install -r requirements.txt
 
 
