@@ -48,12 +48,12 @@ pip install -r requirements.txt
 
 **Windows (PowerShell / CMD):**
 
-python -m venv .venv
+python -m venv .venv   <br>
 .venv\Scripts\activate
 
 **macOS / Linux:**
 
-python3 -m venv .venv
+python3 -m venv .venv    <br>
 source .venv/bin/activate
 
 
