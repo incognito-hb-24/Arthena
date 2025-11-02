@@ -57,11 +57,11 @@ python3 -m venv .venv    <br>
 source .venv/bin/activate
 
 
-2️⃣ Install Dependencies
+2️⃣ Install Dependencies   <br>
 pip install -r requirements.txt
 
 
-3️⃣ (Optional) Set Gemini API Key
+3️⃣ (Optional) Set Gemini API Key   <br>
 Arthena uses Google’s Gemini API for its chatbot.
 You can set the API key in any of these ways:
 
