@@ -84,7 +84,7 @@ https://makersuite.google.com/app/apikey
 streamlit run app.py
 
 
-## **☁️ Streamlit Cloud Deployment (Free Hosting)**
+## Streamlit Cloud Deployment (Free Hosting)
 
 Push your repo to GitHub
 
@@ -101,7 +101,7 @@ ARTHENA = "YOUR_GEMINI_API_KEY"
 Click Restart — your Arthena app is now live!
 
 
-## **Google Colab Testing (optional)**
+## Google Colab Testing (optional)
 Run Arthena inside Colab if you don’t have a local setup:
 
 !pip -q install streamlit==1.39.0 google-generativeai==0.8.3 pandas==2.2.3 numpy==2.1.3 matplotlib==3.9.2
@@ -110,7 +110,7 @@ Run Arthena inside Colab if you don’t have a local setup:
 import os; os.environ["ARTHENA"] = "YOUR_API_KEY"
 
 
-# **Start the app**
+# Start the app
 import threading, subprocess, time
 def run():
     subprocess.run(["streamlit", "run", "app.py", "--server.port", "8501", "--server.address", "0.0.0.0"])
@@ -119,7 +119,7 @@ time.sleep(5)
 print("Arthena is running — open the public URL from the output above.")
 
 
-## **Core Concepts**
+## Core Concepts
 | Module           | Description                                        | Example                           |
 | ---------------- | -------------------------------------------------- | --------------------------------- |
 | **Wealth**       | Long-term assets, liabilities, goals, or insurance | FD, Loan, Health Plan             |
@@ -127,7 +127,7 @@ print("Arthena is running — open the public URL from the output above.")
 | **AI Assistant** | Uses your transaction data to generate tips        | "How can I save more this month?" |
 
 
-## ** AI Assistant (Gemini)**
+## AI Assistant (Gemini)
 
 Arthena’s chatbot uses your entered data to provide relevant financial insights.
 
@@ -140,7 +140,7 @@ Example prompts:
 To enable AI features, make sure your Gemini API key is active and valid.
 
 
-## ** Troubleshooting**
+## Troubleshooting
 | Issue                   | Cause                   | Fix                                                      |
 | ----------------------- | ----------------------- | -------------------------------------------------------- |
 | **AI not responding**   | No API key configured   | Add your key in `.streamlit/secrets.toml` or environment |
