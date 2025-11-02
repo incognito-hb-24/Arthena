@@ -134,7 +134,7 @@ print("Arthena is running — open the public URL from the output above.")
 
 
 
-** AI Assistant (Gemini)**
+## ** AI Assistant (Gemini)**
 
 Arthena’s chatbot uses your entered data to provide relevant financial insights.
 
@@ -149,7 +149,7 @@ To enable AI features, make sure your Gemini API key is active and valid.
 
 
 
-** Troubleshooting**
+## ** Troubleshooting**
 | Issue                   | Cause                   | Fix                                                      |
 | ----------------------- | ----------------------- | -------------------------------------------------------- |
 | **AI not responding**   | No API key configured   | Add your key in `.streamlit/secrets.toml` or environment |
