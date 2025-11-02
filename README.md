@@ -86,7 +86,7 @@ streamlit run app.py
 
 
 
-**☁️ Streamlit Cloud Deployment (Free Hosting)**
+## **☁️ Streamlit Cloud Deployment (Free Hosting)**
 
 Push your repo to GitHub
 
@@ -105,7 +105,7 @@ Click Restart — your Arthena app is now live!
 
 
 
-**Google Colab Testing (optional)**
+## **Google Colab Testing (optional)**
 
 Run Arthena inside Colab if you don’t have a local setup:
 
@@ -114,7 +114,7 @@ Run Arthena inside Colab if you don’t have a local setup:
 %cd Arthena
 import os; os.environ["ARTHENA"] = "YOUR_API_KEY"
 
-# Start the app
+# **Start the app**
 import threading, subprocess, time
 def run():
     subprocess.run(["streamlit", "run", "app.py", "--server.port", "8501", "--server.address", "0.0.0.0"])
@@ -125,7 +125,7 @@ print("Arthena is running — open the public URL from the output above.")
 
 
 
-**Core Concepts**
+## **Core Concepts**
 | Module           | Description                                        | Example                           |
 | ---------------- | -------------------------------------------------- | --------------------------------- |
 | **Wealth**       | Long-term assets, liabilities, goals, or insurance | FD, Loan, Health Plan             |
