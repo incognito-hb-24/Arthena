@@ -47,10 +47,12 @@ pip install -r requirements.txt
 1️⃣ Create and Activate Virtual Environment
 
 Windows (PowerShell / CMD):
+
 python -m venv .venv
 .venv\Scripts\activate
 
 macOS / Linux:
+
 python3 -m venv .venv
 source .venv/bin/activate
 
@@ -66,18 +68,22 @@ You can set the API key in any of these ways:
 🔹 Option A — Environment Variable
 
  Windows
+ 
 set ARTHENA=YOUR_API_KEY
 
  macOS / Linux
+ 
 export ARTHENA=YOUR_API_KEY
 
 🔹 Option B — .streamlit/secrets.toml
 Create a new file named .streamlit/secrets.toml and add:
 
 [secrets]
+
 ARTHENA = "YOUR_API_KEY"
 
 Generate your Gemini API key here:
+
 https://makersuite.google.com/app/apikey
 
 4️⃣ Run Arthena
