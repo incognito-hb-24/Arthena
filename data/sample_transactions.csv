@@ -1,0 +1,8 @@
+Date,Module,Type,Category,Entity,Amount (₹),Notes
+2025-10-01,Cashflow,Income,Salary,Company Payroll,85000,Monthly salary
+2025-10-03,Cashflow,Expense,Food,Swiggy,-1200,Lunch order
+2025-10-05,Cashflow,Expense,Groceries,DMart,-2500,Monthly supplies
+2025-10-08,Cashflow,Investment,SIP,HDFC Mutual Fund,-3000,Monthly SIP
+2025-10-10,Cashflow,Expense,Rent,Flat Owner,-16000,October rent
+2025-10-12,Cashflow,Income,Bonus,Company Payroll,10000,Quarterly bonus
+2025-10-15,Cashflow,Expense,Subscriptions,Netflix,-499,OTT renewal
