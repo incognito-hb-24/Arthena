@@ -80,7 +80,7 @@ Generate your Gemini API key here:
 
 https://makersuite.google.com/app/apikey
 
-4️⃣ Run Arthena
+4️⃣ Run Arthena   <br>
 streamlit run app.py
 
 
