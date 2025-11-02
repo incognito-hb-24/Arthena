@@ -65,9 +65,9 @@ pip install -r requirements.txt
 Arthena uses Google’s Gemini API for its chatbot.
 You can set the API key in any of these ways:
 
-🔹 Option A — Environment Variable
-set ARTHENA=YOUR_API_KEY ** Windows**
-export ARTHENA=YOUR_API_KEY  **macOS / Linux**
+🔹 Option A — Environment Variable       <br>
+set ARTHENA=YOUR_API_KEY ** Windows**   <br>
+export ARTHENA=YOUR_API_KEY  **macOS / Linux**      <br>
 
 🔹 Option B — .streamlit/secrets.toml
 Create a new file named .streamlit/secrets.toml and add:
