@@ -20,18 +20,26 @@ Built with **Streamlit**, **pandas**, and **Gemini AI**, Arthena turns simple us
 Arthena/                 <br> 
 ├─ .devcontainer/                <br>
 │ └─ devcontainer.json              <br>
+│<br> 
 ├─ .streamlit/               <br>
 │ └─ config.toml              <br>
+│<br> 
 ├─ cfo/            <br>
 │ ├─ init.py          <br>
 │ ├─ logic.py              <br>
 │ └─ storage.py                <br>
+│<br> 
 ├─ data/             <br>
 │ └─ sample_transactions.csv          <br>
+│<br> 
 ├─ ArthenaAI.ipynb              <br> 
+│<br> 
 ├─ LICENSE           <br>
+│<br> 
 ├─ README.md           <br>
+│<br> 
 ├─ app.py      <br>
+│<br> 
 └─ requirements.txt             <br>
 
 
