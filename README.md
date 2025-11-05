@@ -25,7 +25,7 @@ Arthena/                 <br>
 │ └─ config.toml              <br>
 │<br> 
 ├─ cfo/            <br>
-│ ├─ init.py          <br>
+│ ├─ _init_.py          <br>
 │ ├─ logic.py              <br>
 │ └─ storage.py                <br>
 │<br> 
