@@ -1,5 +1,6 @@
 import os
-from datetime import date
+from datetime import date, datetime
+
 import numpy as np
 import pandas as pd
 import streamlit as st
@@ -45,25 +46,20 @@ with st.sidebar.expander("Storage"):
 
 with st.sidebar.expander("Sample data"):
     if st.button("↳ Load sample rows"):
-        try:
-            sample = pd.read_csv("data/sample_transactions.csv")
-            st.session_state.df = pd.concat([st.session_state.df, sample], ignore_index=True)
-            save_history(st.session_state.df)
-            st.success("Sample data added.")
-            st.experimental_rerun()
-        except Exception as e:
-            st.error(f"Could not load sample data: {e}")
+        sample = pd.read_csv("data/sample_transactions.csv")
+        st.session_state.df = pd.concat([st.session_state.df, sample], ignore_index=True)
+        save_history(st.session_state.df)
+        st.success("Sample data added.")
+        st.experimental_rerun()
 
 st.sidebar.markdown("---")
-st.sidebar.caption("Tip: set your Gemini API key via env var `ARTHENA` or `GOOGLE_API_KEY`.")
+st.sidebar.caption("Tip: set your Gemini API key in **Secrets** as `ARTHENA` or env var `GOOGLE_API_KEY`.")
 
 # -------------------------
 # Header
 # -------------------------
 st.title("Arthena — Personal CFO")
-st.markdown(
-    "Track your **cashflow & wealth**, see clear insights, and ask **AI** for personalized tips — all from your own data."
-)
+st.markdown("Track your **cashflow & wealth**, see clear insights, and ask **AI** for personalized tips — all from your own data.")
 
 # -------------------------
 # Add Transaction
