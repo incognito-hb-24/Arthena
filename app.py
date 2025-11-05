@@ -1,4 +1,3 @@
-# app.py — Arthena (simplified, no "pro" features)
 import os
 from datetime import date
 import numpy as np
@@ -169,56 +168,126 @@ else:
     )
 
 # -------------------------
-# AI Assistant (Gemini) — simple optional section
+# AI Assistant (Gemini) — robust picker + fallback
 # -------------------------
+import os
+import streamlit as st
+
+API_KEY = os.environ.get("ARTHENA") or os.environ.get("GOOGLE_API_KEY")
+if API_KEY is None:
+    try:
+        API_KEY = st.secrets.get("ARTHENA", None)
+    except Exception:
+        API_KEY = None
+
 st.subheader("Arthena AI — Ask for tips")
 
-# 1) Read API key from env if present (no secrets.toml dependency to keep it simple)
-API_KEY = os.environ.get("ARTHENA") or os.environ.get("GOOGLE_API_KEY")
-
-# 2) Preferred basic models (no listing/advanced logic)
-PREFERRED_MODELS = [
-    "gemini-1.5-flash",
-    "gemini-1.5-flash-latest",
-]
-
+ai_ready = False
 model_obj = None
+available_models = []
+chosen_model_name = None
+
+def list_text_models(genai):
+    try:
+        all_models = list(genai.list_models())
+    except Exception as e:
+        st.error(f"Could not list Gemini models: {e}")
+        return []
+    usable = []
+    for m in all_models:
+        methods = set(getattr(m, "supported_generation_methods", []) or [])
+        if "generateContent" in methods:
+            # Show the canonical name string (often starts with 'models/')
+            name = getattr(m, "name", "") or getattr(m, "model", "")
+            if name:
+                usable.append(name)
+    # Sort a bit: prefer flash/pro, prefer -latest/-001, keep order stable
+    def score(n: str):
+        nl = n.lower()
+        return (
+            0 if "flash" in nl else (1 if "pro" in nl else 2),
+            0 if "latest" in nl else (1 if "-001" in nl else 2),
+            nl
+        )
+    return sorted(usable, key=score)
+
 if API_KEY:
     try:
         import google.generativeai as genai
         genai.configure(api_key=API_KEY)
+        available_models = list_text_models(genai)
 
-        chosen = None
-        for name in PREFERRED_MODELS:
-            try:
-                model_obj = genai.GenerativeModel(name)
-                chosen = name
-                break
-            except Exception:
-                continue
-
-        if chosen:
-            st.caption(f"Using model: `{chosen}`")
+        # If nothing came back, show a helpful message
+        if not available_models:
+            st.info("No text-generation models visible for this API key. "
+                    "In Google AI Studio, enable Generative Language API for your project/key, "
+                    "then try again.")
         else:
-            st.info("Could not initialize a Gemini model with this key. The rest of the app still works.")
-    except Exception as e:
-        st.info(f"Gemini not available ({e}). The rest of the app still works.")
-else:
-    st.info("Add an API key via env var `ARTHENA` or `GOOGLE_API_KEY` to enable the chatbot. The rest of the app works without it.")
+            # Sidebar selector to force a working model if needed
+            with st.sidebar.expander("AI Model"):
+                chosen_model_name = st.selectbox(
+                    "Select Gemini model",
+                    options=available_models,
+                    index=0,
+                    help="Pick one your key actually has access to."
+                )
+                st.caption(f"Using model: `{chosen_model_name}`")
 
-# 3) Chat UI
+            # Prepare the primary model object
+            try:
+                model_obj = genai.GenerativeModel(chosen_model_name)
+                ai_ready = True
+            except Exception as e:
+                st.error(f"Could not init model `{chosen_model_name}`: {e}")
+                ai_ready = False
+
+    except Exception as e:
+        st.error(f"Gemini init failed: {e}")
+else:
+    st.info("Add your Gemini key via env var `ARTHENA` or `GOOGLE_API_KEY`, or in `.streamlit/secrets.toml`.")
+
+# Chat state
+if "chat" not in st.session_state:
+    st.session_state.chat = []
+
 q = st.text_area("Ask a question (e.g., “How can I reduce expenses this month?”)")
 ask = st.button("Ask Arthena", type="primary")
 
 if ask:
-    if model_obj is None:
-        st.warning("AI is not configured yet. Set ARTHENA/GOOGLE_API_KEY env var to enable.")
+    if not ai_ready:
+        st.warning("AI is not configured yet.")
     elif (st.session_state.df is None or st.session_state.df.empty) and q.strip() == "":
         st.warning("Add some data and type a question.")
     else:
+        from cfo.logic import summarize_context
+
+        def try_models_in_order(prompt: str):
+            """Try selected model first, then auto-fallback across available_models on 404/invalid model errors."""
+            errs = []
+            names_to_try = [chosen_model_name] + [m for m in available_models if m != chosen_model_name]
+            for name in names_to_try:
+                try:
+                    m = genai.GenerativeModel(name)
+                    r = m.generate_content(prompt)
+                    # Prefer .text when available
+                    return name, getattr(r, "text", str(r))
+                except Exception as e:
+                    msg = str(e)
+                    errs.append((name, msg))
+                    # Common model-not-found signatures → continue trying others
+                    if "not found" in msg.lower() or "404" in msg or "unsupported" in msg.lower():
+                        continue
+                    # Other errors → stop early
+                    break
+            # If we got here, all failed
+            joined = "\n".join([f"- {n}: {m}" for n, m in errs[:5]])
+            return None, f"All model attempts failed. Errors:\n{joined}"
+
         try:
             context = summarize_context(st.session_state.df)
-            history_str = "\n".join([f"User: {u}\nArthena: {a}" for u, a in st.session_state.chat[-3:]])
+            history_str = "\n".join(
+                [f"User: {u}\nArthena: {a}" for u, a in st.session_state.chat[-3:]]
+            )
             prompt = (
                 "You are Arthena — a personal finance coach. "
                 "Use the user's data context to give simple, practical, India-friendly advice. "
@@ -227,13 +296,14 @@ if ask:
                 f"Data context: {context}\n\n"
                 f"User question: {q}"
             )
-            resp = model_obj.generate_content(prompt)
-            ans = getattr(resp, "text", str(resp))
+            used, ans = try_models_in_order(prompt)
+            if used:
+                st.caption(f"Answered with model: `{used}`")
             st.session_state.chat.append((q or "(empty question)", ans))
         except Exception as e:
             st.session_state.chat.append((q or "(empty question)", f"Error: {e}"))
 
-# 4) Transcript
+# Chat transcript
 if st.session_state.chat:
     st.markdown("**Conversation**")
     for u, a in st.session_state.chat[-8:]:
